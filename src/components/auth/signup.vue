@@ -78,6 +78,7 @@ export default {
       this.hobbyInputs = this.hobbyInputs.filter(hobby => hobby.id !== id)
     },
     onSubmit () {
+      const API_KEY = process.env.VUE_APP_APIKEY
       const formData = {
         email: this.email,
         age: this.age,
@@ -89,7 +90,7 @@ export default {
       }
       console.log(formData, '......signup...')
       // axios.post('/users.json', formData)
-      axios.post('/accounts:signUp?key=AIzaSyDwG-VWtAvFOGSi2_oZoVwRQY-v0waFY7A', {
+      axios.post(`/accounts:signUp?key=${API_KEY}`, {
         email: formData.email,
         password: formData.password,
         returnSecureToken: true
