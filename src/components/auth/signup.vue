@@ -52,7 +52,7 @@
 
 <script>
 // use the custom axios instance below
-// import axios from '../../axios-auth'
+import axios from '../../axios-auth'
 
 export default {
   data () {
@@ -89,13 +89,17 @@ export default {
       }
       console.log(formData, '......signup...')
       // axios.post('/users.json', formData)
-      //   .then(res => console.log(res))
-      //   .catch(error => console.log(error))
+      axios.post('/accounts:signUp?key=AIzaSyDwG-VWtAvFOGSi2_oZoVwRQY-v0waFY7A', {
+        email: formData.email,
+        password: formData.password,
+        returnSecureToken: true
+      })
+        .then(res => console.log(res, '.....res....'))
+        .catch(error => console.log(error, '.......error...'))
     }
   }
 }
 </script>
-
 <style scoped="">
   .signup-form {
     width: 400px;
