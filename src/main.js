@@ -7,7 +7,7 @@ import store from './store'
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'domain.com'
-axios.defaults.headers.common['Authorization'] = 'fsfsfsfs'
+// axios.defaults.headers.common['Authorization'] = 'fsfsfsfs'
 // e.g for get requests
 axios.defaults.headers.get['Accepts'] = 'application/json'
 
@@ -24,17 +24,17 @@ axios.interceptors.response.use(res => {
 })
 
 // removing interceptors on some conditions
-const reqInterceptor = axios.interceptors.request.use(config => {
-  console.log('request interceptors', config)
-  return config
-})
-const resInterceptor = axios.interceptors.response.use(res => {
-  console.log('response inter', res)
-  return res
-})
+// const reqInterceptor = axios.interceptors.request.use(config => {
+//   console.log('request interceptors', config)
+//   return config
+// })
+// const resInterceptor = axios.interceptors.response.use(res => {
+//   console.log('response inter', res)
+//   return res
+// })
 
-axios.interceptors.request.eject(reqInterceptor)
-axios.interceptors.response.eject(resInterceptor)
+// axios.interceptors.request.eject(reqInterceptor)
+// axios.interceptors.response.eject(resInterceptor)
 
 new Vue({
   router,
