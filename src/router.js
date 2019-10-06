@@ -5,6 +5,8 @@ import DashboardPage from './components/dashboard/dashboard.vue'
 import SignupPage from './components/auth/signup.vue'
 import SigninPage from './components/auth/signin.vue'
 
+import store from './store'
+
 Vue.use(Router)
 
 export default new Router({
@@ -25,7 +27,14 @@ export default new Router({
     },
     {
       path: '/dashboard',
-      component: DashboardPage
+      component: DashboardPage,
+      beforeEnter (to, from, next) {
+        if (store.state.idToken) {
+          next()
+        } else {
+          next('/signin')
+        }
+      }
     }
   ]
 })
