@@ -51,9 +51,6 @@
 </template>
 
 <script>
-// use the custom axios instance below
-import axios from '../../axios-auth'
-
 export default {
   data () {
     return {
@@ -78,7 +75,6 @@ export default {
       this.hobbyInputs = this.hobbyInputs.filter(hobby => hobby.id !== id)
     },
     onSubmit () {
-      const API_KEY = process.env.VUE_APP_APIKEY
       const formData = {
         email: this.email,
         age: this.age,
@@ -89,14 +85,11 @@ export default {
         terms: this.terms
       }
       console.log(formData, '......signup...')
-      // axios.post('/users.json', formData)
-      axios.post(`/accounts:signUp?key=${API_KEY}`, {
+      this.$store.dispatch('signup', {
         email: formData.email,
         password: formData.password,
         returnSecureToken: true
       })
-        .then(res => console.log(res, '.....res....'))
-        .catch(error => console.log(error, '.......error...'))
     }
   }
 }
