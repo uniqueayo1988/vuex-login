@@ -85,11 +85,7 @@ export default {
         terms: this.terms
       }
       console.log(formData, '......signup...')
-      this.$store.dispatch('signup', {
-        email: formData.email,
-        password: formData.password,
-        returnSecureToken: true
-      })
+      this.$store.dispatch('signup', formData)
     }
   }
 }
