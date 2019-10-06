@@ -6,7 +6,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'domain.com'
+axios.defaults.baseURL = 'https://ng-http-7c32f.firebaseio.com/'
 // axios.defaults.headers.common['Authorization'] = 'fsfsfsfs'
 // e.g for get requests
 axios.defaults.headers.get['Accepts'] = 'application/json'
