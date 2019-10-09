@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import axios from 'axios'
+import Vuelidate from 'vuelidate'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
+
+Vue.use(Vuelidate)
 
 axios.defaults.baseURL = 'https://ng-http-7c32f.firebaseio.com/'
 // axios.defaults.headers.common['Authorization'] = 'fsfsfsfs'
