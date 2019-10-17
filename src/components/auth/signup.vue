@@ -76,7 +76,10 @@ export default {
   validations: {
     email: {
       required,
-      email
+      email,
+      customUnique: val => { // my custom validator
+        return val !== 'test@test.com'
+      }
     },
     age: {
       required,
