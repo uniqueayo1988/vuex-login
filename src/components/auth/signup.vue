@@ -122,9 +122,9 @@ export default {
       }
       this.hobbyInputs.push(newHobby)
     },
-    onDeleteHobby (id) {
-      this.hobbyInputs = this.hobbyInputs.filter(hobby => hobby.id !== id)
-    },
+    // onDeleteHobby (id) {
+    //   this.hobbyInputs = this.hobbyInputs.filter(hobby => hobby.id !== id)
+    // },
     onSubmit () {
       const formData = {
         email: this.email,
