@@ -16,13 +16,13 @@ axios.defaults.headers.get['Accepts'] = 'application/json'
 
 // using interceptors
 axios.interceptors.request.use(config => {
-  console.log('request interceptors', config)
+  // console.log('request interceptors', config)
   // you can use config.headers['SOMETHING']
   return config
 })
 
 axios.interceptors.response.use(res => {
-  console.log('response inter', res)
+  // console.log('response inter', res)
   return res
 })
 
