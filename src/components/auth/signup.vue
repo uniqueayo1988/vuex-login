@@ -61,6 +61,8 @@
 <script>
 import { required, email, numeric, minValue, minLength, sameAs, requiredUnless } from 'vuelidate/lib/validators'
 // import { required, email, numeric, minValue, minLength, sameAs } from 'vuelidate/lib/validators'
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -77,8 +79,23 @@ export default {
     email: {
       required,
       email,
-      customUnique: val => { // my custom validator
-        return val !== 'test@test.com'
+      // customUnique: val => { // my custom validator
+      //   return val !== 'test@test.com'
+      // }
+      customUnique: val => {
+        // if sending more than one async requests (or using onKeystroke), to avoiding hitting server with plenty requests, consider DEBOUNCE from lodash.
+        if (val === '') return true // required above will handle error if input is empty
+        // return new Promise ((resolve, reject) => {
+        //   // resolve(val === 'test@test.com')
+        //   setTimeout(() => {
+        //     resolve(val !== 'test@test.com')
+        //   }, 5000)
+        // })
+        return axios.get('/users.json?orderBy="email"&equalTo="' + val + '"')
+          .then(res => {
+            console.log(res)
+            return Object.keys(res.data).length === 0
+          })
       }
     },
     age: {
@@ -122,9 +139,9 @@ export default {
       }
       this.hobbyInputs.push(newHobby)
     },
-    // onDeleteHobby (id) {
-    //   this.hobbyInputs = this.hobbyInputs.filter(hobby => hobby.id !== id)
-    // },
+    onDeleteHobby (id) {
+      this.hobbyInputs = this.hobbyInputs.filter(hobby => hobby.id !== id)
+    },
     onSubmit () {
       const formData = {
         email: this.email,
